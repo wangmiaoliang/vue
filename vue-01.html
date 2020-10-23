@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <!-- 使用CDN方法，推荐使用下面这个 -->
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+</head>
+
+<body>
+    <!-- <div class="app">
+        <p>{{message}}</p>
+    </div> -->
+    <div id="app2">
+        <!-- {{ }} 用于输出对象属性和函数返回值 -->
+        <!-- <h3>site:{{site}}</h3>
+        <h3>url:{{url}}</h3>
+        <h3>{{details()}}</h3> -->
+
+        <!-- v-html 用于输入HTML代码 -->
+        <div v-html="message"></div>
+
+        <!-- v-bind 指令被用来响应的更新HTML属性 -->
+        <!-- 在这里 href 是参数，告知 v-bind 指令将该元素的 href 属性与表达式 url 的值绑定 -->
+        <a v-bind:href="url">cainiao</a>
+        <!-- 等价于下面 -->
+        <a :href="url">cainiao</a>
+
+        <!-- 指令是带有 v- 前缀的特殊属性 -->
+        <!-- v-if 指令将根据表达式 seen 的值(true 或 false )来决定是否插入 p 元素 -->
+        <p v-if="seen">现在你看到我了</p>
+        <!-- 生成随机数，再判断 -->
+        <div id="app">
+            <div v-if="Math.random() > 0.5">
+                sorry
+            </div>
+            <div v-else>
+                nosorry
+            </div>
+        </div>
+
+        <!-- v-model 指令来实现双向数据绑定 -->
+        <p>{{something}}</p>
+        <input v-model="something">
+
+        <p>{{rever}}</p>
+        <!-- v-on 监听事件 -->
+        <!-- 点击按钮进行字符反转 -->
+        <button v-on:click="revers">思安我</button>
+        <!-- 等价于下面 -->
+        <button @click="revers">思安我</button>
+
+        <!-- v-show 指令来根据条件展示元素 -->
+        <h2 v-show="ok">hellohello</h2>
+
+        <!-- v-for 迭代对象 -->
+        <ul>
+            <!-- v-for 可以通过一个对象的属性来迭代数据 -->
+            <li v-for="value in object">
+                {{value}}
+            </li>
+            <br>
+            <!-- 第二个的参数为键名 -->
+            <li v-for="(value, key) in object">
+                {{key}} : {{value}}
+            </li>
+            <br>
+            <!-- 第三个参数为索引 -->
+            <li v-for="(value, key, index) in object">
+                {{index}} : {{key}} : {{value}}
+            </li>
+            <br>
+            <!-- 也可以循环整数 -->
+            <li v-for="n in 5">
+                {{n}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // new Vue({
+        //     el: '.app',
+        //     data: {
+        //         message: 'hello vue!'
+        //     }
+        // })
+        // vue 必须要实例化
+        // var data = {
+        //     site: "菜鸟",
+        //     url: 'www.hhhhh.cn.com'
+        // }
+        // var vm = new Vue({
+        //     el: '#app2', //获取对应的元素
+        //     // data: {  // data 定义属性
+        //     //     site: "菜鸟",
+        //     //     url: 'www.hhhhh.cn.com',
+        //     // },
+        //     data: data,
+        //     methods: {  // methods 定义函数
+        //         details: function () {
+        //             return this.site + "xuexi!";
+        //         }
+        //     }
+        // })
+        // // 引用的是相同的对象
+        // console.log(vm.site === data.site); // true
+        // // 设置属性也会影响原始数据
+        // vm.site = "cainiao菜鸟";
+        // console.log(data.site);
+
+        var vm = new Vue({
+            el: '#app2',
+            data: {
+                message: '<h2>哈哈哈</h2>',
+                url: "http://www.runoob.com",
+                seen: true,
+                something: '我走，你也走',
+                rever: "hello world!",
+                ok: false,
+                object: {
+                    name: 'sanshui',
+                    age: 11,
+                    sex: 'nan'
+                }
+            },
+            methods: {
+                revers: function () {
+                    // split('') 将字符串转为数组
+                    // reverse() 对数组进行反转排序
+                    // join('') 将数组元素连接为字符串 
+                    this.rever = this.rever.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
